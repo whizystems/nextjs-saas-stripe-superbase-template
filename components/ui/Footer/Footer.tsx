@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
-import Logo from '@/components/icons/Logo';
-import GitHub from '@/components/icons/GitHub';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
 
 export default function Footer() {
   return (
@@ -13,7 +12,10 @@ export default function Footer() {
             className="flex items-center flex-initial font-bold md:mr-24"
           >
             <span className="mr-2 border rounded-full border-zinc-700">
-              <Logo />
+              <Avatar>
+                <AvatarImage src="https://avatars.githubusercontent.com/u/72594568?s=200&v=4" />
+                <AvatarFallback>Whizy</AvatarFallback>
+              </Avatar>
             </span>
             <span>ACME</span>
           </Link>
@@ -85,7 +87,6 @@ export default function Footer() {
               aria-label="Github Repository"
               href="https://github.com/vercel/nextjs-subscription-payments"
             >
-              <GitHub />
             </a>
           </div>
         </div>

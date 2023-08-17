@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { createServerSupabaseClient } from '@/app/supabase-server';
 
-import Logo from '@/components/icons/Logo';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
 import SignOutButton from './SignOutButton';
 
 import s from './Navbar.module.css';
@@ -20,8 +20,11 @@ export default async function Navbar() {
       <div className="max-w-6xl px-6 mx-auto">
         <div className="relative flex flex-row justify-between py-4 align-center md:py-6">
           <div className="flex items-center flex-1">
-            <Link href="/" className={s.logo} aria-label="Logo">
-              <Logo />
+            <Link href="/" aria-label="Logo">
+              <Avatar>
+                <AvatarImage src="https://avatars.githubusercontent.com/u/72594568?s=200&v=4" />
+                <AvatarFallback>Whizy</AvatarFallback>
+              </Avatar>
             </Link>
             <nav className="hidden ml-6 space-x-2 lg:block">
               <Link href="/" className={s.link}>
