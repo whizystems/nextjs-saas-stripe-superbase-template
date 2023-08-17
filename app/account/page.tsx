@@ -4,7 +4,7 @@ import {
   getUserDetails,
   getSubscription
 } from '@/app/supabase-server';
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { Database } from '@/types_db';
 import { createServerActionClient } from '@supabase/auth-helpers-nextjs';
 import { revalidatePath } from 'next/cache';
@@ -85,7 +85,7 @@ export default async function Account() {
           }
           footer={<ManageSubscriptionButton session={session} />}
         >
-          <div className="mt-8 mb-4 text-xl font-semibold">
+          <div className="mt-8 mb-4 text-xl font-semibold text-white">
             {subscription ? (
               `${subscriptionPrice}/${subscription?.prices?.interval}`
             ) : (
@@ -100,10 +100,9 @@ export default async function Account() {
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
               <p className="pb-4 sm:pb-0">64 characters maximum</p>
               <Button
-                variant="slim"
+                variant="default"
                 type="submit"
                 form="nameForm"
-                disabled={true}
               >
                 {/* WARNING - In Next.js 13.4.x server actions are in alpha and should not be used in production code! */}
                 Update Name
@@ -116,7 +115,7 @@ export default async function Account() {
               <input
                 type="text"
                 name="name"
-                className="w-1/2 p-3 rounded-md bg-zinc-800"
+                className="w-1/2 p-3 rounded-md bg-zinc-800 text-white"
                 defaultValue={userDetails?.full_name ?? ''}
                 placeholder="Your name"
                 maxLength={64}
@@ -133,10 +132,9 @@ export default async function Account() {
                 We will email you to verify the change.
               </p>
               <Button
-                variant="slim"
+                variant="default"
                 type="submit"
                 form="emailForm"
-                disabled={true}
               >
                 {/* WARNING - In Next.js 13.4.x server actions are in alpha and should not be used in production code! */}
                 Update Email
@@ -149,7 +147,7 @@ export default async function Account() {
               <input
                 type="text"
                 name="email"
-                className="w-1/2 p-3 rounded-md bg-zinc-800"
+                className="w-1/2 p-3 rounded-md bg-zinc-800 text-white"
                 defaultValue={user ? user.email : ''}
                 placeholder="Your email"
                 maxLength={64}

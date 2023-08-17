@@ -1,6 +1,5 @@
 'use client';
 
-import Button from '@/components/ui/Button';
 import { Database } from '@/types_db';
 import { postData } from '@/utils/helpers';
 import { getStripe } from '@/utils/stripe-client';
@@ -8,6 +7,7 @@ import { Session, User } from '@supabase/supabase-js';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Button } from '@/components/ui/Button';
 
 type Subscription = Database['public']['Tables']['subscriptions']['Row'];
 type Product = Database['public']['Tables']['products']['Row'];
@@ -113,7 +113,15 @@ export default function Pricing({
                 </div>
               </div>
             </div>
-            <div className="mt-6 space-y-4 sm:mt-12 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-3">
+            {/* <img src={products[0].image} alt="image"></img> */}
+
+            <div className="mt-6 space-y-4 sm:mt-12 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-3"
+            style={{
+              backgroundImage: `url(${products[0].image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}>
               {products[0].prices?.map((price) => {
                 const priceString =
                   price.unit_amount &&
@@ -126,11 +134,11 @@ export default function Pricing({
                 return (
                   <div
                     key={price.interval}
-                    className="divide-y rounded-lg shadow-sm divide-zinc-600 bg-zinc-900"
-                  >
+                    className="divide-y shadow-sm divide-zinc-600 bg-zinc-900 opacity-80"
+                    >
                     <div className="p-6">
                       <p>
-                        <span className="text-5xl font-extrabold white">
+                        <span className="text-5xl font-extrabold text-zinc-100">
                           {priceString}
                         </span>
                         <span className="text-base font-medium text-zinc-100">
@@ -139,15 +147,15 @@ export default function Pricing({
                       </p>
                       <p className="mt-4 text-zinc-300">{price.description}</p>
                       <Button
-                        variant="slim"
+                        variant="outline"
                         type="button"
                         disabled={false}
-                        loading={priceIdLoading === price.id}
+                        // loading={priceIdLoading === price.id}
                         onClick={() => handleCheckout(price)}
                         className="block w-full py-2 mt-12 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 "
                       >
                         {products[0].name ===
-                        subscription?.prices?.products?.name
+                          subscription?.prices?.products?.name
                           ? 'Manage'
                           : 'Subscribe'}
                       </Button>
@@ -178,11 +186,10 @@ export default function Pricing({
               <button
                 onClick={() => setBillingInterval('month')}
                 type="button"
-                className={`${
-                  billingInterval === 'month'
-                    ? 'relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white'
-                    : 'ml-0.5 relative w-1/2 border border-transparent text-zinc-400'
-                } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
+                className={`${billingInterval === 'month'
+                  ? 'relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white'
+                  : 'ml-0.5 relative w-1/2 border border-transparent text-zinc-400'
+                  } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
               >
                 Monthly billing
               </button>
@@ -191,11 +198,10 @@ export default function Pricing({
               <button
                 onClick={() => setBillingInterval('year')}
                 type="button"
-                className={`${
-                  billingInterval === 'year'
-                    ? 'relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white'
-                    : 'ml-0.5 relative w-1/2 border border-transparent text-zinc-400'
-                } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
+                className={`${billingInterval === 'year'
+                  ? 'relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white'
+                  : 'ml-0.5 relative w-1/2 border border-transparent text-zinc-400'
+                  } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
               >
                 Yearly billing
               </button>
