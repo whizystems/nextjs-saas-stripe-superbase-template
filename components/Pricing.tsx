@@ -1,6 +1,5 @@
 'use client';
 
-import Button from '@/components/ui/Button';
 import { Database } from '@/types_db';
 import { postData } from '@/utils/helpers';
 import { getStripe } from '@/utils/stripe-client';
@@ -8,6 +7,7 @@ import { Session, User } from '@supabase/supabase-js';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Button } from '@/components/ui/Button';
 
 type Subscription = Database['public']['Tables']['subscriptions']['Row'];
 type Product = Database['public']['Tables']['products']['Row'];
@@ -130,7 +130,7 @@ export default function Pricing({
                   >
                     <div className="p-6">
                       <p>
-                        <span className="text-5xl font-extrabold white">
+                        <span className="text-5xl font-extrabold text-zinc-100">
                           {priceString}
                         </span>
                         <span className="text-base font-medium text-zinc-100">
@@ -139,10 +139,10 @@ export default function Pricing({
                       </p>
                       <p className="mt-4 text-zinc-300">{price.description}</p>
                       <Button
-                        variant="slim"
+                        variant="outline"
                         type="button"
                         disabled={false}
-                        loading={priceIdLoading === price.id}
+                        // loading={priceIdLoading === price.id}
                         onClick={() => handleCheckout(price)}
                         className="block w-full py-2 mt-12 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900 "
                       >
