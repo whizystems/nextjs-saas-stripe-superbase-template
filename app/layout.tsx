@@ -3,6 +3,7 @@ import Footer from '@/components/ui/Footer';
 import Navbar from '@/components/ui/Navbar';
 import { PropsWithChildren } from 'react';
 import 'styles/main.css';
+import './globals.css';
 
 const meta = {
   title: 'Next.js Subscription Starter',
