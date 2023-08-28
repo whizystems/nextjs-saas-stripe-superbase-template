@@ -23,6 +23,7 @@
     "clsx": "^2.0.0",
     "lucide-react": "^0.268.0",
     "next": "13.4.3",
+    "pnpm": "^8.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-merge-refs": "^2.0.2",

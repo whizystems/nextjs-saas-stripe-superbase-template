@@ -35,6 +35,9 @@ export default async function Navbar() {
                   Account
                 </Link>
               )}
+              <Link href="/space" className={s.link}>
+                Space
+              </Link>
             </nav>
           </div>
           <div className="flex justify-end flex-1 space-x-8">
