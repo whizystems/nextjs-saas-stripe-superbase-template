@@ -55,11 +55,12 @@ export const getActiveProductsWithPrices = async () => {
   const { data, error } = await supabase
     .from('products')
     .select('*, prices(*)')
+    .eq('id', process.env.STRIPE_PRODUCT_ID)
     .eq('active', true)
+    .eq('prices.product_id', process.env.STRIPE_PRODUCT_ID)
     .eq('prices.active', true)
     .order('metadata->index')
     .order('unit_amount', { foreignTable: 'prices' });
-
   if (error) {
     console.log(error.message);
   }
